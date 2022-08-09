@@ -5,6 +5,22 @@ function getGitRootPath () {
   return childProcess.spawnSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).stdout.trim();
 }
 
+function isClean() {
+  return new Promise((resolve, reject) => {
+    childProcess.exec(`git diff --cached --no-ext-diff --name-only`, {
+      maxBuffer: Infinity,
+      cwd: getGitRootPath()
+    }, function (error, stdout) {
+      if (error) {
+        reject(error);
+      }
+      let output = stdout || '';
+      console.log('zzh output', output);
+      resolve(output.trim().length === 0);
+    });
+  })
+}
+
 function bootstrap() {
   const gitCommand = 'git rev-parse --abbrev-ref HEAD';
   const gitCommand2 = 'git branch --show-current';
@@ -13,6 +29,9 @@ function bootstrap() {
   const str2 = childProcess.execSync(gitCommand2).toString();
   console.log('zzh git: ', str);
   console.log('zzh git2: ', str2);
+  // isClean().then((res) => {
+  //   console.log('zzh isclearn', res);
+  // })
 
   inquirer.prompt([
     {
