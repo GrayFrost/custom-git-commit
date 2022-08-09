@@ -1,0 +1,26 @@
+{
+  "name": "custom-git-commit",
+  "version": "1.0.7",
+  "description": "custom git commit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "node bin/git-mkt"
+  },
+  "bin": {
+    "git-mkt": "bin/git-mkt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrayFrost/custom-git-commit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrayFrost/custom-git-commit/issues"
+  },
+  "homepage": "https://github.com/GrayFrost/custom-git-commit#readme",
+  "dependencies": {
+    "inquirer": "^6.5.0"
+  }
+}
